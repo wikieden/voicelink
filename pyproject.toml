@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "voicelink"
+version = "0.1.0a0"
+description = "Voice I/O for Chronotope — ASR (ears) + TTS (mouth) fills for mindloop's Listener/Speaker seams (the offline AI chain, P7). Engines live here; the brain stays text-only."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{ name = "wikieden" }]
+dependencies = ["mindloop"]
+
+[project.optional-dependencies]
+# On-device engines (no network) land here in P7.3: e.g. sherpa-onnx / whisper.cpp
+# for ASR, piper for TTS. The endpoint fills below need only stdlib (urllib).
+local = []
+dev = ["pytest", "pytest-cov", "ruff", "pyright"]
+
+[project.urls]
+Brain = "https://github.com/wikieden/mindloop"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/voicelink"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "PERF", "RUF"]
+
+[tool.pyright]
+include = ["src/voicelink"]
+pythonVersion = "3.10"
+typeCheckingMode = "standard"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
