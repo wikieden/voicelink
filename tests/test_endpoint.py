@@ -17,7 +17,7 @@ from mindloop import (
     TaskStatus,
     VoiceLoop,
 )
-from tempomem import Detection, SpatialMemory
+from tempomem import Detection, TempoMem
 
 from voicelink import (
     EndpointListener,
@@ -62,7 +62,7 @@ def test_transport_failure_surfaces_voiceerror() -> None:
 
 def test_voiceloop_with_voicelink_fills(tmp_path) -> None:
     # cross-package: mindloop VoiceLoop driven by voicelink's ASR/TTS fills
-    mem = SpatialMemory.open(tmp_path / "s.smem", embedding_dim=8)
+    mem = TempoMem.open(tmp_path / "s.smem", embedding_dim=8)
     rng = np.random.default_rng(0).standard_normal(8).astype("float32")
     mem.add_detections([Detection("apple", rng / np.linalg.norm(rng), (1, 0, 0.9),
                                   (0.9, -0.1, 0.8), (1.1, 0.1, 1.0))])
