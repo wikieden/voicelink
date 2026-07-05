@@ -16,6 +16,8 @@ dependencies = ["mindloop"]
 # On-device engines (no network) land here in P7.3: e.g. sherpa-onnx / whisper.cpp
 # for ASR, piper for TTS. The endpoint fills below need only stdlib (urllib).
 local = []
+# Real-microphone capture for SpeechStream (SoundDeviceMic); validated on-device.
+mic = ["sounddevice"]
 dev = ["pytest", "pytest-cov", "ruff", "pyright"]
 
 [project.urls]

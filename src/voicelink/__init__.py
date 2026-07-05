@@ -23,13 +23,23 @@ from .endpoint import (
     make_listener,
     make_speaker,
 )
+from .stream import MicSource, ScriptedMic, SoundDeviceMic, SpeechStream
+from .vad import SpeechSegmenter, VADConfig, frame_rms, pcm_to_wav
 
 __version__ = "0.1.0a0"
 
 __all__ = [
     "EndpointListener",
     "EndpointSpeaker",
+    "MicSource",
+    "ScriptedMic",
+    "SoundDeviceMic",
+    "SpeechSegmenter",
+    "SpeechStream",
+    "VADConfig",
     "VoiceError",
+    "frame_rms",
     "make_listener",
     "make_speaker",
+    "pcm_to_wav",
 ]
